@@ -53,7 +53,7 @@ class SQL:
 
     def create_table(self, attributes):
         '''
-        method for create new table
+        method for create new table, with autosave DB
         :param attributes: two-dimensional array, with format : [[ColumnName, ColumnType], [ExampleName, varchar(100)]]
         :return: None
         '''
@@ -63,6 +63,7 @@ class SQL:
         quest = quest[:len(quest) - 1]
         quest += ")  ON [PRIMARY]"
         self.cur.execute(quest)
+        self.con.commit()
 
     def check_table(self, table=""):
         '''
