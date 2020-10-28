@@ -124,3 +124,33 @@ class SQL:
         :return: object, cursor
         '''
         return self.cur
+
+    def get_table_conf(self, path):
+        '''
+        method for take table configuration
+        :param path: path to .txt configuration file
+        .txt file format:
+        columnname sqltype\n (NAME varchar(100)\n)
+        :return: array with complete configure for create table (create_table method)
+        '''
+        f = open(path)
+        arr = []
+        for string in f:
+            st = string[:-1]
+            arr.append(list(st.split(" ")))
+        return arr
+
+    def get_conf(self, path):
+        '''
+        method for take table configuration
+        :param path: path to .txt configuration file
+        .txt file format:
+        columnname sqltype\n (NAME varchar(100)\n)
+        :return: empty array for create_insert_table method
+        '''
+        f = open(path)
+        arr = []
+        for string in f:
+            st = string[:-1]
+            arr.append([st.split(" ")[0], ""])
+        return arr
